@@ -14,7 +14,7 @@
 #define listImpl_h
 
 //////////////////////////////////////////////////////////////
-//fonctions generatrices privees
+//TODO: fonctions generatrices privees
 //////////////////////////////////////////////////////////////
 
 template <typename TYPE>
@@ -124,7 +124,7 @@ typename list<TYPE>::reverse_iterator list<TYPE>::rend()
 template <typename TYPE>
 list<TYPE>& list<TYPE>::operator=(const list<TYPE>& droite)
 {
-
+    // TODO: operator=
     return *this;
 }
 
