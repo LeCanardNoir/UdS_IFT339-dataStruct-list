@@ -54,11 +54,13 @@ public:
 template <typename TYPE>
 typename list<TYPE>::reverse_iterator list<TYPE>::rbegin()
 {
+    return reverse_iterator(&m_apres);
 }
 
 template <typename TYPE>
 typename list<TYPE>::reverse_iterator list<TYPE>::rend()
 {
+    return reverse_iterator(m_debut);
 }
 
 ///////////////////////////////////////////////////////////
