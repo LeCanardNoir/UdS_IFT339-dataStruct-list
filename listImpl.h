@@ -66,27 +66,56 @@ class list<TYPE>::reverse_iterator
     reverse_iterator() = default;
     reverse_iterator(cellule *c) :m_pointeur(c) {}
 public:
-    TYPE& operator*()const;
-    TYPE* operator->()const;
-    reverse_iterator& operator++(); //++i
-    reverse_iterator operator++(int); //i++
-    reverse_iterator& operator--(); //--i
-    reverse_iterator operator--(int); // i--
-    bool operator==(const reverse_iterator&droite)const;
-    bool operator!=(const reverse_iterator&droite)const;
+    TYPE& operator*()const { return m_pointeur->m_contenu; }
+    TYPE* operator->()const { return &(m_pointeur->m_contenu); }
+
+    reverse_iterator& operator++() {
+        // i++
+        m_pointeur = m_pointeur->m_prec;
+        return *this;
+    };
+
+    reverse_iterator operator++(int) {
+        // ++i
+        reverse_iterator rev_it(*this);
+        operator++();
+        return rev_it;
+    };
+
+    reverse_iterator& operator--() {
+        // --i
+        m_pointeur = m_pointeur->m_suiv;
+        return *this;
+    };
+
+    reverse_iterator operator--(int) {
+        // i--
+        reverse_iterator rev_it(*this);
+        operator--();
+        return rev_it;
+    };
+
+    bool operator==(const reverse_iterator&droite)const {
+        return m_pointeur == droite.m_pointeur;
+    };
+
+    bool operator!=(const reverse_iterator&droite)const {
+        return !(*this == droite);
+    };
 };
 
 template <typename TYPE>
 typename list<TYPE>::reverse_iterator list<TYPE>::rbegin()
 {
-    return reverse_iterator(&m_apres);
+    return reverse_iterator(m_apres.m_prec);
 }
 
 template <typename TYPE>
 typename list<TYPE>::reverse_iterator list<TYPE>::rend()
 {
-    return reverse_iterator(m_debut);
+    return reverse_iterator(m_debut->m_prec);
 }
+
 
 ///////////////////////////////////////////////////////////
 //affectateur
