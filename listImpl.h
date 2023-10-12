@@ -41,7 +41,7 @@ typename list<TYPE>::cellule* list<TYPE>::erase(cellule* c)
 {
     if (size() > 0) {
         c->m_suiv->m_prec = c->m_prec;
-        if (c->m_prec)
+        if(c->m_prec)
             c->m_prec->m_suiv = c->m_suiv;
         else
             m_debut = c->m_suiv;
@@ -50,6 +50,7 @@ typename list<TYPE>::cellule* list<TYPE>::erase(cellule* c)
     }
 
     return c;
+    
 }
 
 
