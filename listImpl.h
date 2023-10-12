@@ -7,8 +7,8 @@
 //  Modifie par : Vincent Ducharme, Automne 2022
 //
 //  Devoir fait par
-//     Coéquipier 1 : Bruno Pouliot
-//     Coéquipier 2 : Gabriel Dumont-Hétu
+//     CoÃ©quipier 1 : Bruno Pouliot
+//     CoÃ©quipier 2 : Gabriel Dumont-HÃ©tu
 
 #ifndef listImpl_h
 #define listImpl_h
@@ -20,17 +20,20 @@
 template <typename TYPE>
 typename list<TYPE>::cellule* list<TYPE>::insert(cellule* c, const TYPE& VAL)
 {
-    //BUUUUUUUUUUUGGGGG
-    cellule nouv;
-    cellule* ptrNouv = &nouv;
-    ptrNouv->m_contenu = VAL;
-    prtNouv->m_prec = c->m_prec;
-    c->m_prec = prtNouv;
-    prtNouv->m_suiv = c;
-    if (prtNouv->m_prec) {
-        prtNouv->m_prec->m_suiv = prtNouv;
+    cellule* nouv = new cellule(TYPE());
+    nouv->m_contenu = VAL;
+    nouv->m_prec = c->m_prec;
+    c->m_prec = nouv;
+    nouv->m_suiv = c;
+    if (nouv->m_prec) {
+        nouv->m_prec->m_suiv = nouv;
+    }
+    else {
+        m_debut = nouv;
     }
     m_size++;
+
+    return nouv;
 }
 
 template <typename TYPE>
@@ -105,7 +108,7 @@ void list<TYPE>::reverse()
         cellule* c = m_debut;
         while (c) {
             std::swap(c->m_suiv, c->m_prec);
-            //on va au suivant, mais vu qu'on vient de swapper prec et suiv, on va au "précédent"
+            //on va au suivant, mais vu qu'on vient de swapper prec et suiv, on va au "prÃ©cÃ©dent"
             c = c->m_prec;
         }
         std::swap(m_debut, m_apres.m_prec);
