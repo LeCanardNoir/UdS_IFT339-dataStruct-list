@@ -39,10 +39,14 @@ int main()
 	l1.pop_front();
 	afficher(cout, l1);
 	//*/
-	
+
+	cout << endl << "l1" << endl;	
 	l1.reverse();
 	afficher(cout, l1);
 
+	cout << endl << "l5" << endl;
+	list<int> l5 = l1;
+	afficher(cout, l5);
 
 	return 0;
 }

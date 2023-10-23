@@ -126,6 +126,13 @@ template <typename TYPE>
 list<TYPE>& list<TYPE>::operator=(const list<TYPE>& droite)
 {
     // TODO: operator=
+    m_apres = TYPE();
+    m_debut = &m_apres;
+    m_size = 0;
+
+    for (const auto& x : droite)
+        push_back(x);
+
     return *this;
 }
 
