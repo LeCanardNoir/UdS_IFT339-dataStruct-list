@@ -49,7 +49,10 @@ typename list<TYPE>::cellule* list<TYPE>::erase(cellule* c)
         m_size--;
     }
 
-    return c;
+    cellule* tmp = c->m_suiv;
+    delete c;
+    c = nullptr;
+    return tmp;
     
 }
 
@@ -126,9 +129,12 @@ template <typename TYPE>
 list<TYPE>& list<TYPE>::operator=(const list<TYPE>& droite)
 {
     // TODO: operator=
-    m_apres = TYPE();
+    for (iterator it = begin(); it != end(); it++)
+        erase(it);
+
+    /*m_apres = TYPE();
     m_debut = &m_apres;
-    m_size = 0;
+    m_size = 0;*/
 
     for (const auto& x : droite)
         push_back(x);
